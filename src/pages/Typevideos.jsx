@@ -25,10 +25,7 @@ const Typevideos = ({ type }) => {
     return (
      
         <div className='relative flex items-center group justify-center m-10'>
-        {/* <MdChevronLeft
-            onClick={slideLeft}
-            className='bg-white rounded-full absolute group-hover:block opacity-50 hover:opacity-90 left-0 hidden md:text-4xl text-2xl cursor-pointer  z-20' /> */}
-        <div id={`slider`} className='gap-3 grid lg:grid-cols-4 w-full'>
+           <div id={`slider`} className='gap-3 grid lg:grid-cols-4 w-full'>
 
         { videos.map((item,id) => (
                 <div key={id}>
@@ -38,10 +35,7 @@ const Typevideos = ({ type }) => {
                 </div>
             ))}
         </div>
-        {/* <MdChevronRight
-            onClick={slideRight}
-            className='bg-white rounded-full absolute group-hover:block opacity-50 hover:opacity-90 right-0 hidden md:text-4xl text-2xl cursor-pointer z-20' /> */}
-    </div>
+       </div>
     )
 }
 
