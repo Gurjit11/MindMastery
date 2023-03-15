@@ -1,30 +1,30 @@
 import React, { useState } from 'react'
 import { AiFillLock, AiOutlineClose, AiOutlineMail } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
-// import { UserAuth } from '../contexts/AuthContext'
+import { UserAuth } from '../contexts/AuthContext'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
-//   const { signUp,createDoc } = UserAuth()
+  const { signUp } = UserAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-    // try{
-    //   await signUp(email, password)
-    //   try{
-    //     await createDoc(email)
-    //     navigate('/')
-    //   }catch(err){
-    //     console.log(err)
-    //   }
-    // }catch(err){
-    //   setError(err.message)
-    //   console.log(err.message)
-    // }
+    try{
+      await signUp(email, password)
+      // try{
+      //   await createDoc(email)
+        navigate('/bot')
+      // }catch(err){
+      //   console.log(err)
+      // }
+    }catch(err){
+      setError(err.message)
+      console.log(err.message)
+    }
   }
 
   return (

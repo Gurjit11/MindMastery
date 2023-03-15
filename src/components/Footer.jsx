@@ -1,12 +1,13 @@
 import React from 'react'
 import { AiOutlineInstagram } from 'react-icons/ai'
 import { FaFacebookF, FaTwitter, FaGithub } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <div className='flex justify-center w-full mt-10'>
 
-      <div className='bg-blue-400 text-white rounded-t-2xl pt-4 md:pl-16 w-full'>
+      <div className='bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-t-2xl pt-4 md:pl-16 w-full'>
 
         <div className='grid sm:grid-cols-2 w-full'>
           <div className='p-4 '>
@@ -16,7 +17,7 @@ const Footer = () => {
                 <ul>
                   <li className='text-sm font-light'>Help</li>
                   <li className='text-sm font-light'>Contact Us</li>
-                  <li className='text-sm font-light'>API Status</li>
+                  <li className='text-sm font-light'><Link to='/feedback'>Feedback</Link></li>
                   <li className='text-sm font-light overflow-hidden'>Documentation</li>
                 </ul>
               </div>
@@ -50,6 +51,8 @@ const Footer = () => {
         </div>
         <p className='text-center text-xs py-4'>Powered by Coin Gecko</p>
       </div>
+
+      
     </div>
   )
 }
