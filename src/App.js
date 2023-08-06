@@ -9,7 +9,6 @@ import { AuthContextProvider } from './contexts/AuthContext';
 import Feedback from './pages/Feedback';
 import Row from './components/Row';
 import Playvideo from './pages/Playvideo';
-// import Chubot from './pages/Chubot';
 import QuizCard from './pages/QuizCard';
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
             <Route path='/feedback' element={<Feedback />} />
             <Route path='/type/:type' element={<Row />} />
             <Route path='/video/:idtaken' element={<Playvideo />} />
-            {/* <Route path='/bot' element={<Chubot />} /> */}
             <Route path='/quiz/:type' element={<QuizCard />} />
           </Routes>
           <Footer />

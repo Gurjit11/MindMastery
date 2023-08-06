@@ -14,7 +14,7 @@ const Typevideos = ({ type }) => {
   console.log(videos);
 
   return (
-    <div className="relative flex items-center group justify-center m-10">
+    <div className="relative flex items-center group min-h-[600px] justify-center m-10">
       <div id={`slider`} className="gap-3 grid lg:grid-cols-4 w-full">
         {videos.map((item, id) => (
           <div key={id}>
