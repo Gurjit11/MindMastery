@@ -1,17 +1,16 @@
 import { addDoc, collection } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import { Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import Chatbot from "react-simple-chatbot";
 import { Segment } from "semantic-ui-react";
 import { db, auth } from "../firebase-config";
 
-const Chatbot = () => {
-  const navigate = useNavigate()
+const Chubot = () => {
   const [username, setUsername] = useState("");
   const [in1, setIn1] = useState("");
   const [in2, setIn2] = useState("");
   const [in3, setIn3] = useState("");
+  const [closed, setClosed] = useState(false);
   const chatref = collection(db, "interest");
   const steps = [
     {
@@ -28,7 +27,7 @@ const Chatbot = () => {
       id: "waiting1",
       user: true,
       validator: (value) => {
-        if (/^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(value)) {
+        if (/^[A-Za-z][A-Za-z'-]+([ A-Za-z][A-Za-z'-]+)*/.test(value)) {
           setUsername(value);
           return true;
         } else {
@@ -39,7 +38,8 @@ const Chatbot = () => {
     },
     {
       id: "Name",
-      message: "Hi {previousValue}, please select any three interests from below",
+      message:
+        "Hi {previousValue}, please select any three interests from below",
       // trigger: "issues",
       trigger: "interest1",
     },
@@ -57,7 +57,7 @@ const Chatbot = () => {
       id: "i1",
       user: true,
       validator: (value) => {
-        if (/^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(value)) {
+        if (/^[A-Za-z][A-Za-z'-]+([ A-Za-z][A-Za-z'-]+)*/.test(value)) {
           setIn1(value);
           return true;
         } else {
@@ -75,7 +75,7 @@ const Chatbot = () => {
       id: "i2",
       user: true,
       validator: (value) => {
-        if (/^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(value)) {
+        if (/^[A-Za-z][A-Za-z'-]+([ A-Za-z][A-Za-z'-]+)*/.test(value)) {
           setIn2(value);
           return true;
         } else {
@@ -93,7 +93,7 @@ const Chatbot = () => {
       id: "i3",
       user: true,
       validator: (value) => {
-        if (/^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(value)) {
+        if (/^[A-Za-z][A-Za-z'-]+([ A-Za-z][A-Za-z'-]+)*/.test(value)) {
           setIn3(value);
           return true;
         } else {
@@ -121,33 +121,37 @@ const Chatbot = () => {
     },
     {
       id: "end-message",
-      message:"Your interest were submitted successfully",
+      message: "Your interest were submitted successfully",
       end: true,
     },
   ];
 
-  if (username && in1 && in2 && in3){
-  try {
-    addDoc(chatref, {
-      name: username,
-      interest1: in1,
-      interest2: in2,
-      interest3: in3,
-      id: auth.currentUser.uid,
-    });
-  } catch (error) {
-    console.log(error);
+  if (username && in1 && in2 && in3) {
+    try {
+      addDoc(chatref, {
+        name: username,
+        interest1: in1,
+        interest2: in2,
+        interest3: in3,
+        id: auth.currentUser.uid,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
-}
 
   return (
     <>
       <Segment className="flex justify-center items-center">
-      <AiOutlineClose className="absolute z-20 bg-white p-3 text-black left-[560px]" onClick={() => navigate('/')}   />
-        <Chatbot steps={steps} />
+        {closed ? null : (
+          <span className="fixed z-20 bg-black p-1 rounded-full text-2xl text-white bottom-[300px] right-[370px]">
+            <AiOutlineCloseCircle onClick={() => setClosed(true)} />
+          </span>
+        )}
+        {closed ? null : <Chatbot steps={steps} />}
       </Segment>
     </>
   );
 };
 
-export default Chatbot;
+export default Chubot;
