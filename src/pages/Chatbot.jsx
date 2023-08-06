@@ -6,7 +6,7 @@ import Chatbot from "react-simple-chatbot";
 import { Segment } from "semantic-ui-react";
 import { db, auth } from "../firebase-config";
 
-const Chubot = () => {
+const Chatbot = () => {
   const navigate = useNavigate()
   const [username, setUsername] = useState("");
   const [in1, setIn1] = useState("");
@@ -150,22 +150,4 @@ const Chubot = () => {
   );
 };
 
-export default Chubot;
-
-
-
-// useEffect(()=>{
-    
-  //   try {
-  //     addDoc(chatref, {
-  //       name: username,
-  //       interest1: in1,
-  //       interest2: in2,
-  //       interest3: in3,
-  //       id: auth.currentUser.uid,
-  //     });
-  //     alert('Interest saved')
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },)
+export default Chatbot;
